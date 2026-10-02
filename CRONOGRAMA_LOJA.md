@@ -23,6 +23,7 @@ Este arquivo é a versão humana do cronograma. Para automações, filtros e ger
 ### Ao fechar
 - [ ] Desligar a estufa de salgados
 - [ ] Desligar a derretedeira de chocolate
+- [ ] Tirar o lixo e limpar lixeiras
 
 ## Segunda, quarta e sexta
 - [ ] Limpar e organizar a geladeira

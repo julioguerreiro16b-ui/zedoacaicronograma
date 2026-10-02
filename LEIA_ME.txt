@@ -28,7 +28,7 @@ Uma tarefa reaberta perde sua marcação e horário de conclusão; o histórico 
 A data da tarefa é a data selecionada. A data e hora reais da conferência aparecem no Histórico, no fuso America/Sao_Paulo.
 
 CONTEÚDO E IDENTIDADE
-As 24 tarefas e as três regras foram preservadas do cronograma_loja.json fornecido no ZIP. Esse JSON permanece a fonte das tarefas.
+O cronograma contém 25 tarefas e três regras. A tarefa de tirar o lixo e limpar lixeiras foi adicionada ao fechamento diário. O cronograma_loja.json permanece a fonte das tarefas.
 A regra de validade de três dias foi reproduzida do material da loja; não foi determinada por este painel.
 O Instagram @zedoacai.nf não pôde ser consultado. A paleta roxa, verde e amarelo-lima foi inspirada no logotipo público do Zé do Açaí no iFood:
 https://www.ifood.com.br/delivery/nova-friburgo-rj/ze-do-acai-centro/33a2abd6-e622-4c02-a776-10ede491fa15

@@ -75,7 +75,7 @@ try:
     for task in original['tarefas']:
         assert task['tarefa'] in text, task['id'] + ': texto ausente no PDF'
     (root / 'texto_pdf.txt').write_text('\n\n'.join(texts), 'utf8')
-    print('PDF verificado: 2 paginas, todas as 24 tarefas legiveis, duas previas geradas.')
+    print('PDF verificado: 2 paginas, todas as 25 tarefas legiveis, duas previas geradas.')
 finally:
     close(doc)
     destroy()

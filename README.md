@@ -1,6 +1,6 @@
 # Cronograma Zé do Açaí
 
-Painel de checklist para a equipe da loja, com 24 tarefas de operação, limpeza e organização. O cronograma preserva as tarefas e frequências do material fornecido pela loja.
+Painel de checklist para a equipe da loja, com 25 tarefas de operação, limpeza e organização. O cronograma preserva as tarefas e frequências do material fornecido pela loja.
 
 Abra [index.html](index.html) no navegador para usar o painel. A aplicação funciona sem instalação e sem dependências externas.
 
@@ -55,7 +55,7 @@ A conclusão mensal ou quinzenal vale para todos os dias daquele período. Os cu
 
 Após alterar o JSON, execute `gerar_arquivos.ps1` no PowerShell para atualizar `index.html` e `cronograma_para_imprimir.html`. O PDF precisa ser gerado novamente pela versão de impressão do navegador. Mantenha as duas imagens em `docs/` atualizadas com o PDF.
 
-`verificar.cjs` verifica frequências, persistência, histórico, filtros, adaptação às telas e paginação; requer Node.js e uma instância de Chrome com depuração local na porta 9222. `renderizar_pdf.py` renderiza o PDF e confere o texto das 24 tarefas, usando Python e o PDFium instalado pelo LibreOffice no Windows. Esses scripts foram usados na validação dos arquivos entregues.
+`verificar.cjs` verifica frequências, persistência, histórico, filtros, adaptação às telas e paginação; requer Node.js e uma instância de Chrome com depuração local na porta 9222. `renderizar_pdf.py` renderiza o PDF e confere o texto das 25 tarefas, usando Python e o PDFium instalado pelo LibreOffice no Windows. Esses scripts foram usados na validação dos arquivos entregues.
 
 ## Identidade visual
 

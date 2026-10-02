@@ -238,6 +238,25 @@
       "observacao": ""
     },
     {
+      "id": "DIA-FEC-003",
+      "area": "Limpeza",
+      "tarefa": "Tirar o lixo e limpar lixeiras",
+      "frequencia": "diaria",
+      "momento": "fechamento",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
       "id": "SEM-SQF-001",
       "area": "Limpeza / Organização",
       "tarefa": "Limpar e organizar a geladeira",

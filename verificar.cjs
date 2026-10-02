@@ -23,9 +23,9 @@ function assert(ok,msg){if(!ok)throw Error(msg);console.log('OK: '+msg);}
   await navigate('index.html');
   await evaluate('localStorage.removeItem("zedoacai-cronograma-v1")');
   await navigate('index.html');
-  assert(await evaluate('tasks.length')===24,'Todas as 24 tarefas estão presentes no painel');
+  assert(await evaluate('tasks.length')===25,'Todas as 25 tarefas estão presentes no painel');
   assert(await evaluate('source.tarefas.every(t=>!/[ÃÂ]/.test(t.tarefa))'),'Textos das tarefas preservam acentos');
-  for(const [s,n] of [['2026-10-01',18],['2026-10-02',17],['2026-10-03',14],['2026-10-08',19],['2026-10-15',16],['2026-10-22',19],['2026-10-29',16],['2026-10-31',12],['2026-11-01',14],['2027-02-28',15]]) {
+  for(const [s,n] of [['2026-10-01',19],['2026-10-02',18],['2026-10-03',15],['2026-10-08',20],['2026-10-15',17],['2026-10-22',20],['2026-10-29',17],['2026-10-31',13],['2026-11-01',15],['2027-02-28',16]]) {
     await date(s);assert(await evaluate('document.querySelectorAll("[data-check]").length')===n,`${s} mostra ${n} tarefas conforme as frequências`);
   }
   await date('2026-10-01');
@@ -42,13 +42,15 @@ function assert(ok,msg){if(!ok)throw Error(msg);console.log('OK: '+msg);}
   assert(!await evaluate('document.querySelector("[data-check=QUI-S24-001]").checked'),'Quarta semana cria nova ocorrência quinzenal');
   await date('2026-10-01');
   await evaluate('document.querySelector("[data-check=DIA-FEC-001]").click();document.querySelector("[data-check=DIA-FEC-002]").click();');
-  assert(await evaluate('document.querySelector(".closing-state").classList.contains("ready")'),'Fechamento muda de status após as duas conferências');
+  assert(!await evaluate('document.querySelector(".closing-state").classList.contains("ready")'),'Fechamento permanece pendente enquanto lixo e lixeiras não foram conferidos');
+  await evaluate('document.querySelector("[data-check=DIA-FEC-003]").click();');
+  assert(await evaluate('document.querySelector(".closing-state").classList.contains("ready")'),'Fechamento muda de status após as três conferências');
   assert(await evaluate('document.querySelector(".stats .stat:last-child strong").textContent')==='01','Cuidado contínuo crítico permanece pendente');
   await navigate('index.html');
   await date('2026-10-01');
   assert(await evaluate('document.querySelector("[data-check=MEN-S1-001]").checked && document.querySelector("[data-owner=MEN-S1-001]").value === "Ana"'),'Responsável e conclusão persistem após recarregar');
   await evaluate('document.querySelector("[data-view=history]").click()');
-  assert(await evaluate('document.querySelectorAll("tbody tr").length')===4,'Histórico reúne as quatro ocorrências concluídas');
+  assert(await evaluate('document.querySelectorAll("tbody tr").length')===5,'Histórico reúne as cinco ocorrências concluídas');
   await evaluate('document.querySelector("[data-view=month]").click()');
   assert(await evaluate('document.querySelectorAll(".monthcard").length')===5,'Mês com 31 dias mostra cinco períodos');
   await date('2027-02-01');
@@ -73,7 +75,7 @@ function assert(ok,msg){if(!ok)throw Error(msg);console.log('OK: '+msg);}
   fs.writeFileSync(path.join(root,'previa_celular.png'),Buffer.from(shot.data,'base64'));
   await call('Emulation.setDeviceMetricsOverride',{width:1100,height:1200,deviceScaleFactor:1,mobile:false});
   await navigate('cronograma_para_imprimir.html');
-  assert(await evaluate('document.querySelectorAll("[data-task]").length')===24,'Impressão contém as 24 tarefas');
+  assert(await evaluate('document.querySelectorAll("[data-task]").length')===25,'Impressão contém as 25 tarefas');
   const originalTasks=JSON.parse(fs.readFileSync(path.join(root,'cronograma_loja.json'),'utf8')).tarefas;
   assert(await evaluate(`${JSON.stringify(originalTasks.map(t=>t.tarefa))}.every(text=>Array.from(document.querySelectorAll('.tasktext')).some(el=>el.textContent.trim().startsWith(text)))`),'Versão impressa preserva exatamente o texto de todas as tarefas');
   assert(await evaluate('Array.from(document.querySelectorAll(".page,.block")).every(p=>p.scrollHeight<=p.clientHeight+1)'),'Conteúdo cabe nas duas páginas A4 e nos blocos sem corte');
@@ -82,7 +84,7 @@ function assert(ok,msg){if(!ok)throw Error(msg);console.log('OK: '+msg);}
   const pageCount=(pdfBuffer.toString('latin1').match(/\/Type\s*\/Page\b/g)||[]).length;
   assert(pageCount===2,'PDF gerado com exatamente duas páginas');
   const poster=await call('Page.captureScreenshot',{format:'png',captureBeyondViewport:true});fs.writeFileSync(path.join(root,'previa_impressao.png'),Buffer.from(poster.data,'base64'));
-  fs.writeFileSync(path.join(root,'resultado_verificacao.txt'),'Verificação concluída: 24 tarefas preservadas; frequências corretas; conclusão por período; persistência; histórico; filtros; computador e celular sem rolagem horizontal; PDF A4 em duas páginas.\n','utf8');
+  fs.writeFileSync(path.join(root,'resultado_verificacao.txt'),'Verificação concluída: 25 tarefas preservadas; frequências corretas; conclusão por período; persistência; histórico; filtros; computador e celular sem rolagem horizontal; PDF A4 em duas páginas.\n','utf8');
   console.log('ARQUIVOS GERADOS: PDF e prévias.');
   sockets.forEach(s=>s.close());
 })().catch(e=>{console.error(e.stack);sockets.forEach(s=>s.close());process.exitCode=1;});
