@@ -1,0 +1,410 @@
+{
+  "projeto": "Cronograma Operacional da Loja",
+  "versao": "1.0",
+  "objetivo": "Evitar esquecimentos e padronizar tarefas diárias, semanais, quinzenais e mensais da loja.",
+  "fonte_da_verdade": "tarefas",
+  "regras": [
+    "Ao terminar os pedidos, não deixar cremes fora da geladeira.",
+    "Cremes devem ser etiquetados com validade de 3 dias.",
+    "Tarefas de fechamento críticas devem ser conferidas antes da saída da última pessoa."
+  ],
+  "tarefas": [
+    {
+      "id": "DIA-ABR-001",
+      "area": "Loja / Self-service",
+      "tarefa": "Assar pães de queijo e empadas",
+      "frequencia": "diaria",
+      "momento": "abertura",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": ""
+    },
+    {
+      "id": "DIA-ABR-002",
+      "area": "Loja / Self-service",
+      "tarefa": "Verificar se há creme de Ninho produzido",
+      "frequencia": "diaria",
+      "momento": "abertura",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": ""
+    },
+    {
+      "id": "DIA-ABR-003",
+      "area": "Loja / Self-service",
+      "tarefa": "Verificar se há chantininho produzido",
+      "frequencia": "diaria",
+      "momento": "abertura",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": ""
+    },
+    {
+      "id": "DIA-ABR-004",
+      "area": "Self-service",
+      "tarefa": "Colocar o açaí natural para aclimatar",
+      "frequencia": "diaria",
+      "momento": "abertura",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": ""
+    },
+    {
+      "id": "DIA-ABR-005",
+      "area": "Self-service",
+      "tarefa": "Conferir os cremes e etiquetar com validade de 3 dias",
+      "frequencia": "diaria",
+      "momento": "abertura",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": "Aplicar às produções novas e manter a identificação atualizada."
+    },
+    {
+      "id": "DIA-EXP-001",
+      "area": "Self-service",
+      "tarefa": "Manter o vidro do self-service limpo",
+      "frequencia": "diaria",
+      "momento": "durante_expediente",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "DIA-EXP-002",
+      "area": "Produção / Atendimento",
+      "tarefa": "Ao terminar os pedidos, guardar imediatamente os cremes na geladeira",
+      "frequencia": "diaria",
+      "momento": "durante_expediente",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "critica",
+      "observacao": "Regra operacional: não deixar cremes fora da geladeira."
+    },
+    {
+      "id": "DIA-NOI-001",
+      "area": "Self-service / Estoque",
+      "tarefa": "Repor açaís",
+      "frequencia": "diaria",
+      "momento": "noite",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": "Dedicado preferencialmente ao período da noite."
+    },
+    {
+      "id": "DIA-NOI-002",
+      "area": "Self-service / Estoque",
+      "tarefa": "Repor sorvetes",
+      "frequencia": "diaria",
+      "momento": "noite",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": "Dedicado preferencialmente ao período da noite."
+    },
+    {
+      "id": "DIA-NOI-003",
+      "area": "Self-service",
+      "tarefa": "Limpar os acrílicos dos complementos",
+      "frequencia": "diaria",
+      "momento": "noite",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": "Dedicado preferencialmente ao período da noite."
+    },
+    {
+      "id": "DIA-FEC-001",
+      "area": "Loja",
+      "tarefa": "Desligar a estufa de salgados",
+      "frequencia": "diaria",
+      "momento": "fechamento",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "critica",
+      "observacao": ""
+    },
+    {
+      "id": "DIA-FEC-002",
+      "area": "Loja",
+      "tarefa": "Desligar a derretedeira de chocolate",
+      "frequencia": "diaria",
+      "momento": "fechamento",
+      "dias_semana": [
+        "segunda",
+        "terca",
+        "quarta",
+        "quinta",
+        "sexta",
+        "sabado",
+        "domingo"
+      ],
+      "semanas_mes": [],
+      "prioridade": "critica",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-SQF-001",
+      "area": "Limpeza / Organização",
+      "tarefa": "Limpar e organizar a geladeira",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "segunda",
+        "quarta",
+        "sexta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-SQF-002",
+      "area": "Limpeza",
+      "tarefa": "Lavar o banheiro",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "segunda",
+        "quarta",
+        "sexta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "alta",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-SQF-003",
+      "area": "Limpeza / Organização",
+      "tarefa": "Organizar e limpar o mezanino",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "segunda",
+        "quarta",
+        "sexta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-TQ-001",
+      "area": "Limpeza",
+      "tarefa": "Limpar embaixo dos freezers",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "terca",
+        "quinta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-TQ-002",
+      "area": "Limpeza",
+      "tarefa": "Limpar as paredes com maior atenção",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "terca",
+        "quinta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-TQ-003",
+      "area": "Limpeza",
+      "tarefa": "Tirar poeira das prateleiras, mesas, bancadas e em cima da geladeira",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "terca",
+        "quinta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "SEM-TQ-004",
+      "area": "Organização",
+      "tarefa": "Organizar os armários dos complementos",
+      "frequencia": "semanal",
+      "momento": "a_definir",
+      "dias_semana": [
+        "terca",
+        "quinta"
+      ],
+      "semanas_mes": [],
+      "prioridade": "media",
+      "observacao": ""
+    },
+    {
+      "id": "MEN-S1-001",
+      "area": "Limpeza",
+      "tarefa": "Limpar os vidros internos da loja",
+      "frequencia": "mensal",
+      "momento": "a_definir",
+      "dias_semana": [],
+      "semanas_mes": [
+        1
+      ],
+      "prioridade": "media",
+      "observacao": "Executar durante a primeira semana do mês."
+    },
+    {
+      "id": "MEN-S1-002",
+      "area": "Limpeza",
+      "tarefa": "Limpar os vidros externos da loja",
+      "frequencia": "mensal",
+      "momento": "a_definir",
+      "dias_semana": [],
+      "semanas_mes": [
+        1
+      ],
+      "prioridade": "media",
+      "observacao": "Executar durante a primeira semana do mês."
+    },
+    {
+      "id": "QUI-S24-001",
+      "area": "Self-service / Estoque",
+      "tarefa": "Retirar o gelo dos freezers do self-service",
+      "frequencia": "quinzenal",
+      "momento": "a_definir",
+      "dias_semana": [],
+      "semanas_mes": [
+        2,
+        4
+      ],
+      "prioridade": "alta",
+      "observacao": "Executar na 2ª e 4ª semana do mês."
+    },
+    {
+      "id": "QUI-S24-002",
+      "area": "Estoque",
+      "tarefa": "Retirar o gelo dos freezers do estoque",
+      "frequencia": "quinzenal",
+      "momento": "a_definir",
+      "dias_semana": [],
+      "semanas_mes": [
+        2,
+        4
+      ],
+      "prioridade": "alta",
+      "observacao": "Executar na 2ª e 4ª semana do mês."
+    },
+    {
+      "id": "QUI-S24-003",
+      "area": "Self-service",
+      "tarefa": "Limpar os trilhos do vidro do self-service",
+      "frequencia": "quinzenal",
+      "momento": "a_definir",
+      "dias_semana": [],
+      "semanas_mes": [
+        2,
+        4
+      ],
+      "prioridade": "media",
+      "observacao": "Executar na 2ª e 4ª semana do mês."
+    }
+  ]
+}

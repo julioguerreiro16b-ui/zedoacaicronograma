@@ -1,0 +1,19 @@
+# Registros operacionais exportados pela equipe
+registros-zedoacai-*.json
+
+# Perfil e resultados locais de verificação
+.chrome-verificacao/
+/previa_*.png
+/resultado_verificacao.txt
+/texto_pdf.txt
+debug.log
+*.log
+
+# Arquivos locais de ambiente e ferramentas
+.env
+.env.*
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db

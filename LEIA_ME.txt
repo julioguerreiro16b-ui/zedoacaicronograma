@@ -1,0 +1,38 @@
+CRONOGRAMA OPERACIONAL — ZÉ DO AÇAÍ
+
+Abra index.html no Chrome, Edge ou outro navegador.
+
+Dia: tarefas da abertura, expediente, noite e fechamento, somadas aos cuidados programados da data escolhida. Preencha o responsável e marque a tarefa ao conferir. O horário de conclusão é registrado automaticamente.
+Semana: visão dos cuidados adicionais de segunda a domingo.
+Mês: tarefas mensais e quinzenais por período.
+Histórico: registros de conclusão e responsáveis, com filtro implícito por tarefa preenchida.
+
+IMPRESSÃO
+cronograma_para_imprimir.pdf: cronograma completo em duas páginas A4 verticais.
+cronograma_para_imprimir.html: mesma versão para imprimir pelo navegador.
+No painel, Imprimir imprime a visão atual. Para um checklist de uma data específica, selecione a data, abra Dia e escolha o filtro Todas antes de imprimir.
+
+PERÍODOS
+1ª semana = dias 1–7; 2ª = 8–14; 3ª = 15–21; 4ª = 22–28; 5ª = 29 até o fim.
+Este critério foi adotado para tornar objetiva a expressão "semana do mês" do ZIP.
+Tarefas mensais e quinzenais devem ser realizadas uma única vez em cada período indicado. A conclusão vale para o período e aparece em todos os seus dias, sem nova cobrança diária.
+A limpeza semanal é exigida em cada um dos dias indicados no arquivo original.
+Os dias de funcionamento seguem o ZIP: tarefas diárias de segunda a domingo. Horários específicos e nomes não foram informados; a equipe define o momento da limpeza e preenche os responsáveis.
+As duas tarefas de expediente são cuidados contínuos. Marcar o checklist registra a conferência do dia, sem encerrar a obrigação de repetir esses cuidados.
+
+REGISTROS
+Os dados ficam no navegador e dispositivo usados; não há sincronização entre celulares e computadores. Use sempre o mesmo navegador e arquivo para continuar os registros.
+Exportar salva uma cópia JSON. Importar une os registros; em conflitos, prevalece a versão do arquivo importado. A função aceita apenas registros desta estrutura.
+Se o navegador impedir o armazenamento, aparece um aviso. Nesse caso, exporte antes de fechar.
+Uma tarefa reaberta perde sua marcação e horário de conclusão; o histórico mostra o estado atual de cada ocorrência, não um registro de todas as edições.
+A data da tarefa é a data selecionada. A data e hora reais da conferência aparecem no Histórico, no fuso America/Sao_Paulo.
+
+CONTEÚDO E IDENTIDADE
+As 24 tarefas e as três regras foram preservadas do cronograma_loja.json fornecido no ZIP. Esse JSON permanece a fonte das tarefas.
+A regra de validade de três dias foi reproduzida do material da loja; não foi determinada por este painel.
+O Instagram @zedoacai.nf não pôde ser consultado. A paleta roxa, verde e amarelo-lima foi inspirada no logotipo público do Zé do Açaí no iFood:
+https://www.ifood.com.br/delivery/nova-friburgo-rj/ze-do-acai-centro/33a2abd6-e622-4c02-a776-10ede491fa15
+
+ARQUIVOS DE APOIO
+cronograma_loja.json, CRONOGRAMA_LOJA.md e README_CODEX.md: originais extraídos do ZIP.
+painel.template.html e gerar_arquivos.ps1: arquivos usados para gerar os documentos. Após alterar as tarefas no JSON, execute gerar_arquivos.ps1 para atualizar os HTMLs. O PDF precisa ser gerado novamente pelo navegador.
