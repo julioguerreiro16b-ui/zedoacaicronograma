@@ -20,6 +20,12 @@ test('API exige acesso e configuração; mensagens não expõem credenciais',asy
   assert.equal((await request('GET',null,'',{})).status,503);
   assert.equal((await request('DELETE')).status,405);
 });
+test('código de seis dígitos autentica e código incorreto continua bloqueado',async()=>{
+  const config={...env,TEAM_ACCESS_CODE:'123456'};
+  assert.equal((await request('GET',null,'123456',config)).status,200);
+  assert.equal((await request('GET',null,'654321',config)).status,401);
+  assert.equal((await request('GET',null,'12345',{...env,TEAM_ACCESS_CODE:'12345'})).status,503);
+});
 test('Postgres guarda dados e permite leitura em outra instância da API',async()=>{
   const key='DIA-FEC-003|2026-10-02',mutationId=randomUUID();
   const first=await request('POST',{key,record:value,baseRevision:0,mutationId});
