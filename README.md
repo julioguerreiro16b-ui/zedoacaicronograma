@@ -2,7 +2,7 @@
 
 Painel de checklist para a equipe da loja, com 25 tarefas de operação, limpeza e organização. O cronograma preserva as tarefas e frequências do material fornecido pela loja.
 
-O painel pode ser usado pelo endereço publicado na Vercel, com registros compartilhados em Neon/Postgres. Abrir [index.html](index.html) diretamente funciona em modo local; a sincronização exige o site e o banco configurados.
+O painel pode ser usado pelo endereço publicado na Vercel, com registros compartilhados em Supabase/Postgres. Abrir [index.html](index.html) diretamente funciona em modo local; a sincronização exige o site e o banco configurados.
 
 - **Dia:** abertura, expediente, noite, fechamento e cuidados programados da data.
 - **Semana e mês:** visão dos cuidados recorrentes e dos períodos de execução.
@@ -17,12 +17,12 @@ Use **Exportar** para guardar uma cópia de segurança. Importações com difere
 
 1. Na Vercel, crie um projeto e importe `julioguerreiro16b-ui/zedoacaicronograma` do GitHub.
 2. Use a branch `main`, **Framework Preset: Other** e **Root Directory: .** (raiz do repositório, onde está `vercel.json`).
-3. Na área **Storage / Marketplace**, adicione **Neon (Postgres)** e conecte o banco ao projeto. A integração deve disponibilizar a variável `DATABASE_URL` no ambiente **Production**. Confira o plano apresentado antes de criar o recurso.
-4. Em **Settings → Environment Variables**, crie `TEAM_ACCESS_CODE` no ambiente **Production**, com um código aleatório de pelo menos 16 caracteres (recomendado: 32 ou mais). Compartilhe esse código somente com a equipe. Para gerar um código, execute localmente `node -e "console.log(require('node:crypto').randomBytes(24).toString('base64url'))"`. As credenciais do banco ficam apenas no servidor.
+3. Crie ou escolha um projeto no **Supabase**. No **SQL Editor**, execute [a migração do checklist](supabase/migrations/202610020001_checklist.sql). Ela cria a tabela e as funções de leitura/gravação com proteção contra conflitos. A tabela usa RLS, e somente o servidor pode acessar essas funções. Mantenha a Data API habilitada para o schema `public`.
+4. Na Vercel, em **Settings → Environment Variables**, configure no ambiente **Production**: `SUPABASE_URL` (URL do projeto), `SUPABASE_SECRET_KEY` (chave secreta `sb_secret_...`, disponível nas configurações de API Keys do Supabase) e `TEAM_ACCESS_CODE` (código aleatório da loja, com pelo menos 16 caracteres; recomendado: 32 ou mais). A chave `service_role` legada também é aceita em `SUPABASE_SERVICE_ROLE_KEY`. Não use a chave pública/anon. As chaves do Supabase ficam somente no servidor. Para gerar o código da equipe, execute localmente `node -e "console.log(require('node:crypto').randomBytes(24).toString('base64url'))"`.
 5. Mantenha os comandos definidos pelo `vercel.json`: instalação `npm ci`, build `npm run build`, saída `public`. Use Node.js 22. Faça o deploy ou **Redeploy** depois de configurar as variáveis.
-6. Em cada computador, abra o mesmo endereço do site, clique em **Conectar equipe** e informe o código. O código fica na sessão daquela aba. A tabela do banco é criada automaticamente na primeira conexão autorizada.
+6. Em cada computador, abra o mesmo endereço do site, clique em **Conectar equipe** e informe o código da loja. O código fica na sessão daquela aba; ele não é a chave secreta do Supabase.
 
-O build gera o painel a partir do template e do JSON, e publica os scripts do navegador, o HTML de impressão e o PDF em `public/`. A função `/api/records` guarda cada ocorrência separadamente, com controle de versão e reenvio idempotente. Não é necessário executar PowerShell, Python ou Chrome no servidor. Referências: [build da Vercel](https://vercel.com/docs/builds/configure-a-build), [Neon na Vercel](https://vercel.com/marketplace/neon/neon) e [funções Node.js](https://vercel.com/docs/functions/runtimes/node-js).
+O build gera o painel a partir do template e do JSON, e publica os scripts do navegador, o HTML de impressão e o PDF em `public/`. A função `/api/records` chama as funções SQL do Supabase por HTTPS, guardando cada ocorrência com controle de versão e reenvio idempotente. Não é necessário executar PowerShell, Python ou Chrome no servidor. Referências: [chaves do Supabase](https://supabase.com/docs/guides/getting-started/api-keys), [funções do banco](https://supabase.com/docs/guides/database/functions) e [funções Node.js na Vercel](https://vercel.com/docs/functions/runtimes/node-js).
 
 Após publicar, confira `/`, `/cronograma_para_imprimir.html` e `/cronograma_para_imprimir.pdf`. Conecte dois computadores, informe um nome e conclua uma tarefa no primeiro. Em até 10 segundos, ela deve aparecer concluída no segundo (ou desaparecer do checklist se for recorrente, ficando no Histórico). Recarregue ambos e confira os dados. Teste exportar e importar uma cópia.
 
@@ -68,7 +68,7 @@ Para desenvolver: instale Node.js 22, execute `npm ci`, copie `.env.example` par
 
 `npm test` verifica as regras de calendário, migração, autoria, API e concorrência usando PostgreSQL local de testes (PGlite). `npm run test:browser` ou `node verificar.cjs` verifica dois perfis independentes de Chrome, sincronização, fila offline, conflitos, histórico e layout; usa um banco temporário, sem credenciais reais. No Windows, usa o Chrome instalado no caminho padrão; em outro ambiente, defina `CHROME_PATH`. `renderizar_pdf.py` renderiza o PDF e confere o texto das 25 tarefas usando o PDFium do LibreOffice no Windows.
 
-As verificações locais não provisionam Neon nem fazem deploy. A sincronização em produção só estará ativa depois de concluir a configuração de banco, código e redeploy descrita acima.
+As verificações locais executam a mesma migração e funções SQL em PostgreSQL de testes; não provisionam Supabase nem fazem deploy. A sincronização em produção só estará ativa depois de concluir a migração, configurar as variáveis e fazer o redeploy descritos acima.
 
 ## Identidade visual
 

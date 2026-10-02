@@ -21,7 +21,7 @@ Os dias de funcionamento seguem o ZIP: tarefas diárias de segunda a domingo. Ho
 As duas tarefas de expediente são cuidados contínuos. Marcar o checklist registra a conferência do dia, sem encerrar a obrigação de repetir esses cuidados.
 
 REGISTROS
-Os dados são compartilhados entre computadores quando o banco online está configurado. Em cada computador, abra o mesmo site e informe o código da loja em Conectar equipe. O indicador confirma quando os registros estão sincronizados; a consulta é atualizada a cada 10 segundos. Sem conexão, a cópia local e a fila de alterações ficam no navegador para reenvio. A configuração do banco Neon e da Vercel está no README.md.
+Os dados são compartilhados entre computadores quando o banco online está configurado. Em cada computador, abra o mesmo site e informe o código da loja em Conectar equipe. O indicador confirma quando os registros estão sincronizados; a consulta é atualizada a cada 10 segundos. Sem conexão, a cópia local e a fila de alterações ficam no navegador para reenvio. A configuração do banco Supabase e da Vercel está no README.md.
 Exportar salva uma cópia JSON. Importar aceita cópias antigas e novas. Conflitos de importação ou alterações simultâneas são exibidos para a equipe escolher qual versão manter; não há substituição silenciosa. Conclusões antigas sem nome voltam a ficar pendentes para conferência.
 Se o navegador impedir o armazenamento, aparece um aviso. Nesse caso, exporte antes de fechar.
 Uma tarefa reaberta perde sua marcação e horário de conclusão; o histórico mostra o estado atual de cada ocorrência, não um registro de todas as edições.

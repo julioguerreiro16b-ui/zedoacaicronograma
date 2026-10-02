@@ -5,7 +5,7 @@ const http = require('node:http');
 const { spawn } = require('node:child_process');
 const assert = require('node:assert/strict');
 const { PGlite } = require('@electric-sql/pglite');
-const { createDatabase } = require('../lib/database.cjs');
+const { createLocalDatabase } = require('../tests/local-database.cjs');
 const { handler } = require('../lib/records-handler.cjs');
 const root = path.resolve(__dirname, '..');
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -23,10 +23,10 @@ async function until(check, label) {
 }
 (async()=>{
   const pg=new PGlite();
-  const database=createDatabase({query:async(q,p)=>(await pg.query(q,p)).rows});
+  const database=createLocalDatabase(pg);
   await database.list();
   const code='teste-local-equipe-123456789';
-  const api=handler(database,{DATABASE_URL:'postgresql://test',TEAM_ACCESS_CODE:code});
+  const api=handler(database,{SUPABASE_URL:'https://test.supabase.co',SUPABASE_SECRET_KEY:'sb_secret_test',TEAM_ACCESS_CODE:code});
   let online=true;
   const allowed=new Set(['index.html','app.js','schedule-core.js','sync-store.js','cronograma_para_imprimir.html','cronograma_para_imprimir.pdf']);
   const server=http.createServer((req,res)=>{

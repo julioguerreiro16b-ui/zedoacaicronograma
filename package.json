@@ -11,9 +11,6 @@
     "test:browser": "node scripts/verify-browser.cjs",
     "dev": "node --env-file-if-exists=.env.local scripts/dev.cjs"
   },
-  "dependencies": {
-    "@neondatabase/serverless": "^1.0.0"
-  },
   "devDependencies": {
     "@electric-sql/pglite": "^0.5.8"
   }

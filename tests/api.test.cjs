@@ -2,17 +2,17 @@ const {test,before,after} = require('node:test');
 const assert = require('node:assert/strict');
 const {randomUUID} = require('node:crypto');
 const {PGlite} = require('@electric-sql/pglite');
-const {createDatabase} = require('../lib/database.cjs');
+const {createLocalDatabase} = require('./local-database.cjs');
 const {handler} = require('../lib/records-handler.cjs');
 let pg,db;
-const env={DATABASE_URL:'postgresql://test',TEAM_ACCESS_CODE:'test-code-long-enough-123456'};
+const env={SUPABASE_URL:'https://test.supabase.co',SUPABASE_SECRET_KEY:'sb_secret_test',TEAM_ACCESS_CODE:'test-code-long-enough-123456'};
 const value={done:true,owner:'Ana',date:'2026-10-02',scheduledDate:'2026-10-02',completedAt:'2026-10-02T12:00:00Z'};
 async function request(method,body,token=env.TEAM_ACCESS_CODE,config=env) {
   const req={method,body,headers:{authorization:token?'Bearer '+token:''}};
   let result; const res={headers:{},setHeader(k,v){this.headers[k]=v;},end(text){result={status:this.statusCode,body:JSON.parse(text),headers:this.headers};}};
   await handler(db,config)(req,res);return result;
 }
-before(async()=>{pg=new PGlite();db=createDatabase({query:async(q,p)=>(await pg.query(q,p)).rows});});
+before(async()=>{pg=new PGlite();db=createLocalDatabase(pg);await db.list();});
 after(async()=>{await pg.close();});
 test('API exige acesso e configuração; mensagens não expõem credenciais',async()=>{
   assert.equal((await request('GET',null,'')).status,401);
