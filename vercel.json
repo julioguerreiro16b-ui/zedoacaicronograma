@@ -1,7 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
-  "installCommand": "",
-  "buildCommand": "mkdir -p public && cp index.html cronograma_para_imprimir.html cronograma_para_imprimir.pdf public/",
+  "installCommand": "npm ci",
+  "buildCommand": "npm run build",
   "outputDirectory": "public"
 }

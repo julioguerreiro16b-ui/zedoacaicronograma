@@ -12,6 +12,7 @@ debug.log
 # Arquivos locais de ambiente e ferramentas
 .env
 .env.*
+!.env.example
 node_modules/
 __pycache__/
 *.pyc

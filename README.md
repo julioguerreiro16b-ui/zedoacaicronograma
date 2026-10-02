@@ -2,26 +2,31 @@
 
 Painel de checklist para a equipe da loja, com 25 tarefas de operação, limpeza e organização. O cronograma preserva as tarefas e frequências do material fornecido pela loja.
 
-Abra [index.html](index.html) no navegador para usar o painel. A aplicação funciona sem instalação e sem dependências externas.
+O painel pode ser usado pelo endereço publicado na Vercel, com registros compartilhados em Neon/Postgres. Abrir [index.html](index.html) diretamente funciona em modo local; a sincronização exige o site e o banco configurados.
 
 - **Dia:** abertura, expediente, noite, fechamento e cuidados programados da data.
 - **Semana e mês:** visão dos cuidados recorrentes e dos períodos de execução.
-- **Conferências:** responsável, horário de conclusão e destaque para tarefas críticas.
+- **Conferências:** nome de quem fez obrigatório, horário de conclusão e destaque para tarefas críticas e períodos programados.
 - **Histórico:** estado atual das tarefas preenchidas, com exportação e importação em JSON.
 
-Os registros ficam no navegador e dispositivo usados. Use **Exportar** para guardar uma cópia ou transferir os dados. A importação une os registros e, em conflitos, usa a versão do arquivo importado.
+Cada alteração é guardada primeiro no navegador e enviada ao banco quando há conexão e acesso autorizado. Outros computadores consultam as atualizações a cada 10 segundos enquanto o painel está visível, e também ao voltar à janela. O indicador **Salvo e sincronizado com a equipe** confirma o envio. Se duas pessoas alterarem a mesma ocorrência, o painel mostra as duas versões para a equipe escolher; alterações em tarefas diferentes não se sobrescrevem.
+
+Use **Exportar** para guardar uma cópia de segurança. Importações com diferenças também exigem escolher a versão. Ao abrir a versão nova, os registros antigos deste navegador são migrados e o armazenamento original é preservado. Conclusões antigas sem nome ficam pendentes para que a equipe confira e informe quem fez.
 
 ## Deploy na Vercel
 
 1. Na Vercel, crie um projeto e importe `julioguerreiro16b-ui/zedoacaicronograma` do GitHub.
 2. Use a branch `main`, **Framework Preset: Other** e **Root Directory: .** (raiz do repositório, onde está `vercel.json`).
-3. Mantenha os comandos e a pasta de saída definidos pelo `vercel.json` e clique em **Deploy**. Não são necessárias variáveis de ambiente nem dependências.
+3. Na área **Storage / Marketplace**, adicione **Neon (Postgres)** e conecte o banco ao projeto. A integração deve disponibilizar a variável `DATABASE_URL` no ambiente **Production**. Confira o plano apresentado antes de criar o recurso.
+4. Em **Settings → Environment Variables**, crie `TEAM_ACCESS_CODE` no ambiente **Production**, com um código aleatório de pelo menos 16 caracteres (recomendado: 32 ou mais). Compartilhe esse código somente com a equipe. Para gerar um código, execute localmente `node -e "console.log(require('node:crypto').randomBytes(24).toString('base64url'))"`. As credenciais do banco ficam apenas no servidor.
+5. Mantenha os comandos definidos pelo `vercel.json`: instalação `npm ci`, build `npm run build`, saída `public`. Use Node.js 22. Faça o deploy ou **Redeploy** depois de configurar as variáveis.
+6. Em cada computador, abra o mesmo endereço do site, clique em **Conectar equipe** e informe o código. O código fica na sessão daquela aba. A tabela do banco é criada automaticamente na primeira conexão autorizada.
 
-A configuração copia os arquivos já gerados para `public/`: o painel `index.html`, a versão de impressão `cronograma_para_imprimir.html` e o PDF `cronograma_para_imprimir.pdf`. Apenas esses arquivos são publicados. O build usa os comandos de shell disponíveis na Vercel; não depende de PowerShell, Python ou Chrome no servidor. Referência: [configuração de build da Vercel](https://vercel.com/docs/builds/configure-a-build).
+O build gera o painel a partir do template e do JSON, e publica os scripts do navegador, o HTML de impressão e o PDF em `public/`. A função `/api/records` guarda cada ocorrência separadamente, com controle de versão e reenvio idempotente. Não é necessário executar PowerShell, Python ou Chrome no servidor. Referências: [build da Vercel](https://vercel.com/docs/builds/configure-a-build), [Neon na Vercel](https://vercel.com/marketplace/neon/neon) e [funções Node.js](https://vercel.com/docs/functions/runtimes/node-js).
 
-Após publicar, confira `/`, `/cronograma_para_imprimir.html` e `/cronograma_para_imprimir.pdf`. Marque uma tarefa no painel, recarregue a página e verifique a persistência. Experimente também exportar e importar uma cópia dos registros.
+Após publicar, confira `/`, `/cronograma_para_imprimir.html` e `/cronograma_para_imprimir.pdf`. Conecte dois computadores, informe um nome e conclua uma tarefa no primeiro. Em até 10 segundos, ela deve aparecer concluída no segundo (ou desaparecer do checklist se for recorrente, ficando no Histórico). Recarregue ambos e confira os dados. Teste exportar e importar uma cópia.
 
-Os registros continuam salvos no navegador, por endereço do site, sem sincronização entre dispositivos. Para levar os registros locais ao site, use **Exportar** no painel antigo e **Importar cópia** no endereço definitivo. Endereços de preview e domínios diferentes mantêm registros separados.
+Sem o banco e o código configurados, o painel avisa que está salvando somente neste navegador. Para levar registros de um arquivo local ou de outro domínio ao site, use **Exportar** no painel antigo e **Importar cópia** no endereço definitivo. A fila local pertence a cada navegador e endereço; o banco conectado ao projeto é a fonte compartilhada. Se usar previews, conecte um banco de testes separado do banco de produção.
 
 Para atualizar as tarefas, execute `gerar_arquivos.ps1` localmente e atualize o PDF conforme as instruções de manutenção abaixo. Envie os arquivos gerados para `main`; com a integração GitHub da Vercel configurada, esse envio dispara o próximo deploy.
 
@@ -47,7 +52,11 @@ Para organizar as semanas do mês, o painel usa blocos contados a partir do dia 
 | 4ª | 22–28 | Freezers e trilhos, uma vez no período |
 | 5ª | 29 até o fim | Rotina diária e semanal |
 
-A conclusão mensal ou quinzenal vale para todos os dias daquele período. Os cuidados de expediente continuam ao longo do turno, mesmo após a marcação de conferência.
+A limpeza semanal cria uma ocorrência em **cada dia indicado**. Se não for feita, continua nos dias seguintes como atrasada, identificada pela data prevista. Uma nova ocorrência não apaga a anterior. O acompanhamento de pendências começa em `inicio_acompanhamento`, no JSON (02/10/2026).
+
+Os vidros aparecem como pendência desde o início do mês, com destaque na 1ª semana. O primeiro cuidado quinzenal fica disponível no início do mês e ganha destaque na 2ª semana; o segundo entra no dia 22 e ganha destaque na 4ª. Ao terminar a janela, o destaque muda para **Atrasada**. As ocorrências não feitas continuam inclusive na virada do mês. A conclusão remove apenas aquela ocorrência do checklist e a mantém no Histórico, onde é possível **Reabrir tarefa**.
+
+Tarefas diárias continuam vinculadas ao dia escolhido. Os cuidados de expediente continuam ao longo do turno, mesmo após a marcação de conferência. A autoria é o nome informado pela equipe, não uma identidade individual autenticada: o acesso ao banco usa o código compartilhado da loja.
 
 ## Arquivos e manutenção
 
@@ -55,7 +64,11 @@ A conclusão mensal ou quinzenal vale para todos os dias daquele período. Os cu
 
 Após alterar o JSON, execute `gerar_arquivos.ps1` no PowerShell para atualizar `index.html` e `cronograma_para_imprimir.html`. O PDF precisa ser gerado novamente pela versão de impressão do navegador. Mantenha as duas imagens em `docs/` atualizadas com o PDF.
 
-`verificar.cjs` verifica frequências, persistência, histórico, filtros, adaptação às telas e paginação; requer Node.js e uma instância de Chrome com depuração local na porta 9222. `renderizar_pdf.py` renderiza o PDF e confere o texto das 25 tarefas, usando Python e o PDFium instalado pelo LibreOffice no Windows. Esses scripts foram usados na validação dos arquivos entregues.
+Para desenvolver: instale Node.js 22, execute `npm ci`, copie `.env.example` para `.env.local` e configure um banco de testes e seu código. Execute `npm run build` e `npm run dev`; abra `http://localhost:3000`.
+
+`npm test` verifica as regras de calendário, migração, autoria, API e concorrência usando PostgreSQL local de testes (PGlite). `npm run test:browser` ou `node verificar.cjs` verifica dois perfis independentes de Chrome, sincronização, fila offline, conflitos, histórico e layout; usa um banco temporário, sem credenciais reais. No Windows, usa o Chrome instalado no caminho padrão; em outro ambiente, defina `CHROME_PATH`. `renderizar_pdf.py` renderiza o PDF e confere o texto das 25 tarefas usando o PDFium do LibreOffice no Windows.
+
+As verificações locais não provisionam Neon nem fazem deploy. A sincronização em produção só estará ativa depois de concluir a configuração de banco, código e redeploy descrita acima.
 
 ## Identidade visual
 

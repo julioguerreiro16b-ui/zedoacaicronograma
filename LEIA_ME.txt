@@ -1,8 +1,8 @@
 CRONOGRAMA OPERACIONAL — ZÉ DO AÇAÍ
 
-Abra index.html no Chrome, Edge ou outro navegador.
+Abra o endereço do site para compartilhar os registros. Abrir index.html diretamente funciona apenas em modo local.
 
-Dia: tarefas da abertura, expediente, noite e fechamento, somadas aos cuidados programados da data escolhida. Preencha o responsável e marque a tarefa ao conferir. O horário de conclusão é registrado automaticamente.
+Dia: tarefas da abertura, expediente, noite e fechamento, somadas aos cuidados programados da data escolhida. Informe obrigatoriamente o nome de quem fez antes de concluir a tarefa. O horário de conclusão é registrado automaticamente.
 Semana: visão dos cuidados adicionais de segunda a domingo.
 Mês: tarefas mensais e quinzenais por período.
 Histórico: registros de conclusão e responsáveis, com filtro implícito por tarefa preenchida.
@@ -15,14 +15,14 @@ No painel, Imprimir imprime a visão atual. Para um checklist de uma data espec�
 PERÍODOS
 1ª semana = dias 1–7; 2ª = 8–14; 3ª = 15–21; 4ª = 22–28; 5ª = 29 até o fim.
 Este critério foi adotado para tornar objetiva a expressão "semana do mês" do ZIP.
-Tarefas mensais e quinzenais devem ser realizadas uma única vez em cada período indicado. A conclusão vale para o período e aparece em todos os seus dias, sem nova cobrança diária.
-A limpeza semanal é exigida em cada um dos dias indicados no arquivo original.
+Tarefas mensais e quinzenais ficam pendentes até serem feitas, inclusive após o período programado. Ganham destaque na semana programada e ficam como atrasadas depois dela. Ao concluir, saem do checklist e permanecem no Histórico.
+A limpeza semanal é exigida em cada dia indicado no arquivo original. Ocorrências não feitas continuam pendentes nos dias seguintes, identificadas pela data prevista.
 Os dias de funcionamento seguem o ZIP: tarefas diárias de segunda a domingo. Horários específicos e nomes não foram informados; a equipe define o momento da limpeza e preenche os responsáveis.
 As duas tarefas de expediente são cuidados contínuos. Marcar o checklist registra a conferência do dia, sem encerrar a obrigação de repetir esses cuidados.
 
 REGISTROS
-Os dados ficam no navegador e dispositivo usados; não há sincronização entre celulares e computadores. Use sempre o mesmo navegador e arquivo para continuar os registros.
-Exportar salva uma cópia JSON. Importar une os registros; em conflitos, prevalece a versão do arquivo importado. A função aceita apenas registros desta estrutura.
+Os dados são compartilhados entre computadores quando o banco online está configurado. Em cada computador, abra o mesmo site e informe o código da loja em Conectar equipe. O indicador confirma quando os registros estão sincronizados; a consulta é atualizada a cada 10 segundos. Sem conexão, a cópia local e a fila de alterações ficam no navegador para reenvio. A configuração do banco Neon e da Vercel está no README.md.
+Exportar salva uma cópia JSON. Importar aceita cópias antigas e novas. Conflitos de importação ou alterações simultâneas são exibidos para a equipe escolher qual versão manter; não há substituição silenciosa. Conclusões antigas sem nome voltam a ficar pendentes para conferência.
 Se o navegador impedir o armazenamento, aparece um aviso. Nesse caso, exporte antes de fechar.
 Uma tarefa reaberta perde sua marcação e horário de conclusão; o histórico mostra o estado atual de cada ocorrência, não um registro de todas as edições.
 A data da tarefa é a data selecionada. A data e hora reais da conferência aparecem no Histórico, no fuso America/Sao_Paulo.
@@ -34,5 +34,5 @@ O Instagram @zedoacai.nf não pôde ser consultado. A paleta roxa, verde e amare
 https://www.ifood.com.br/delivery/nova-friburgo-rj/ze-do-acai-centro/33a2abd6-e622-4c02-a776-10ede491fa15
 
 ARQUIVOS DE APOIO
-cronograma_loja.json, CRONOGRAMA_LOJA.md e README_CODEX.md: originais extraídos do ZIP.
+cronograma_loja.json e CRONOGRAMA_LOJA.md: rotina original com as atualizações solicitadas. README_CODEX.md: instruções originais.
 painel.template.html e gerar_arquivos.ps1: arquivos usados para gerar os documentos. Após alterar as tarefas no JSON, execute gerar_arquivos.ps1 para atualizar os HTMLs. O PDF precisa ser gerado novamente pelo navegador.

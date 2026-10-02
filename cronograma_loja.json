@@ -1,6 +1,7 @@
 {
   "projeto": "Cronograma Operacional da Loja",
-  "versao": "1.0",
+  "versao": "2.0",
+  "inicio_acompanhamento": "2026-10-02",
   "objetivo": "Evitar esquecimentos e padronizar tarefas diárias, semanais, quinzenais e mensais da loja.",
   "fonte_da_verdade": "tarefas",
   "regras": [
