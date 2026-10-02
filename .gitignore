@@ -17,3 +17,7 @@ __pycache__/
 *.pyc
 .DS_Store
 Thumbs.db
+
+# Arquivos locais e saída de deploy da Vercel
+.vercel/
+/public/

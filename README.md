@@ -11,6 +11,20 @@ Abra [index.html](index.html) no navegador para usar o painel. A aplicação fun
 
 Os registros ficam no navegador e dispositivo usados. Use **Exportar** para guardar uma cópia ou transferir os dados. A importação une os registros e, em conflitos, usa a versão do arquivo importado.
 
+## Deploy na Vercel
+
+1. Na Vercel, crie um projeto e importe `julioguerreiro16b-ui/zedoacaicronograma` do GitHub.
+2. Use a branch `main`, **Framework Preset: Other** e **Root Directory: .** (raiz do repositório, onde está `vercel.json`).
+3. Mantenha os comandos e a pasta de saída definidos pelo `vercel.json` e clique em **Deploy**. Não são necessárias variáveis de ambiente nem dependências.
+
+A configuração copia os arquivos já gerados para `public/`: o painel `index.html`, a versão de impressão `cronograma_para_imprimir.html` e o PDF `cronograma_para_imprimir.pdf`. Apenas esses arquivos são publicados. O build usa os comandos de shell disponíveis na Vercel; não depende de PowerShell, Python ou Chrome no servidor. Referência: [configuração de build da Vercel](https://vercel.com/docs/builds/configure-a-build).
+
+Após publicar, confira `/`, `/cronograma_para_imprimir.html` e `/cronograma_para_imprimir.pdf`. Marque uma tarefa no painel, recarregue a página e verifique a persistência. Experimente também exportar e importar uma cópia dos registros.
+
+Os registros continuam salvos no navegador, por endereço do site, sem sincronização entre dispositivos. Para levar os registros locais ao site, use **Exportar** no painel antigo e **Importar cópia** no endereço definitivo. Endereços de preview e domínios diferentes mantêm registros separados.
+
+Para atualizar as tarefas, execute `gerar_arquivos.ps1` localmente e atualize o PDF conforme as instruções de manutenção abaixo. Envie os arquivos gerados para `main`; com a integração GitHub da Vercel configurada, esse envio dispara o próximo deploy.
+
 ## Impressão
 
 O [PDF completo](cronograma_para_imprimir.pdf) tem duas páginas A4 verticais. A [versão HTML para impressão](cronograma_para_imprimir.html) permite imprimir pelo navegador. No painel, o botão **Imprimir** imprime a visão selecionada.
